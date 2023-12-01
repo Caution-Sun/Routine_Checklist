@@ -6,164 +6,168 @@
     android:layout_height="match_parent"
     tools:context=".SettingFragment" >
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:orientation="vertical"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/layoutChange1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal"
-            tools:visibility="visible">
+            android:layout_margin="50dp"
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/editRoutine1"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/layoutChange1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="루틴 변경 1" />
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                tools:visibility="visible">
+
+                <EditText
+                    android:id="@+id/editRoutine1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="루틴 변경 1" />
+
+                <Button
+                    android:id="@+id/buttonMinus1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Minus" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutChange2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                tools:visibility="visible">
+
+                <EditText
+                    android:id="@+id/editRoutine2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="루틴 변경 2" />
+
+                <Button
+                    android:id="@+id/buttonMinus2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Minus" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutChange3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                tools:visibility="visible">
+
+                <EditText
+                    android:id="@+id/editRoutine3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="루틴 변경 3" />
+
+                <Button
+                    android:id="@+id/buttonMinus3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Minus" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutChange4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                tools:visibility="visible">
+
+                <EditText
+                    android:id="@+id/editRoutine4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="루틴 변경 4" />
+
+                <Button
+                    android:id="@+id/buttonMinus4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Minus" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutChange5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                tools:visibility="visible">
+
+                <EditText
+                    android:id="@+id/editRoutine5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="루틴 변경 5" />
+
+                <Button
+                    android:id="@+id/buttonMinus5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Minus" />
+            </LinearLayout>
 
             <Button
-                android:id="@+id/buttonMinus1"
+                android:id="@+id/buttonPlus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="Minus" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutChange2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal"
-            tools:visibility="visible">
-
-            <EditText
-                android:id="@+id/editRoutine2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="루틴 변경 2" />
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="Plus"
+                tools:visibility="visible" />
 
             <Button
-                android:id="@+id/buttonMinus2"
-                android:layout_width="wrap_content"
+                android:id="@+id/buttonSetting"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="Minus" />
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="설정 적용" />
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutChange3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal"
-            tools:visibility="visible">
-
-            <EditText
-                android:id="@+id/editRoutine3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="루틴 변경 3" />
-
-            <Button
-                android:id="@+id/buttonMinus3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="Minus" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutChange4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal"
-            tools:visibility="visible">
-
-            <EditText
-                android:id="@+id/editRoutine4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="루틴 변경 4" />
-
-            <Button
-                android:id="@+id/buttonMinus4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="Minus" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutChange5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal"
-            tools:visibility="visible">
-
-            <EditText
-                android:id="@+id/editRoutine5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="루틴 변경 5" />
-
-            <Button
-                android:id="@+id/buttonMinus5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="Minus" />
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/buttonPlus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:text="Plus"
-            tools:visibility="visible" />
-
-        <Button
-            android:id="@+id/buttonSetting"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:text="설정 적용" />
-    </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
