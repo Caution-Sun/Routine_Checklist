@@ -35,8 +35,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="루틴 변경 1" />
+                    android:hint=" 루틴 입력 1"
+                    android:inputType="textPersonName" />
 
                 <Button
                     android:id="@+id/buttonMinus1"
@@ -61,8 +61,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="루틴 변경 2" />
+                    android:hint="루틴 입력 2"
+                    android:inputType="textPersonName" />
 
                 <Button
                     android:id="@+id/buttonMinus2"
@@ -87,8 +87,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="루틴 변경 3" />
+                    android:hint="루틴 입력 3"
+                    android:inputType="textPersonName" />
 
                 <Button
                     android:id="@+id/buttonMinus3"
@@ -113,8 +113,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="루틴 변경 4" />
+                    android:hint="루틴 입력 4"
+                    android:inputType="textPersonName" />
 
                 <Button
                     android:id="@+id/buttonMinus4"
@@ -139,8 +139,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="루틴 변경 5" />
+                    android:hint="루틴 입력 5"
+                    android:inputType="textPersonName" />
 
                 <Button
                     android:id="@+id/buttonMinus5"
@@ -164,7 +164,6 @@
                 android:id="@+id/buttonSetting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:text="설정 적용" />
         </LinearLayout>

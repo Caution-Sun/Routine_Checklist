@@ -28,11 +28,11 @@
             tools:visibility="visible">
 
             <TextView
-                android:id="@+id/textRoutin1"
+                android:id="@+id/textRoutine1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="루틴 1"
+                android:hint="루틴 1"
                 android:textAlignment="center" />
 
             <CheckBox
@@ -56,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="루틴 2"
+                android:hint="루틴 2"
                 android:textAlignment="center" />
 
             <CheckBox
@@ -80,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="루틴 3"
+                android:hint="루틴 3"
                 android:textAlignment="center" />
 
             <CheckBox
@@ -104,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="루틴 4"
+                android:hint="루틴 4"
                 android:textAlignment="center" />
 
             <CheckBox
@@ -128,7 +128,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="루틴 5"
+                android:hint="루틴 5"
                 android:textAlignment="center" />
 
             <CheckBox

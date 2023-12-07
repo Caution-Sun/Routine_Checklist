@@ -1,14 +1,113 @@
 package org.techtown.routine_checklist;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    ChecklistFragment checklistFragment;
+    CalenderFragment calenderFragment;
+    SettingFragment settingFragment;
+
+    int routineCount = 5;
+    ArrayList<String> routines = new ArrayList<>();
+
+    TinyDB tinyDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        tinyDB = new TinyDB(this);
+
+        checklistFragment = new ChecklistFragment();
+        calenderFragment = new CalenderFragment();
+        settingFragment = new SettingFragment();
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, checklistFragment).commit();
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()){
+                    case R.id.tab1:
+                        setRoutines(routineCount, routines, checklistFragment);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, checklistFragment).commit();
+                        return true;
+                    case R.id.tab2:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, calenderFragment).commit();
+                        return true;
+                    case R.id.tab3:
+                        setRoutines(routineCount, routines, settingFragment);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, settingFragment).commit();
+                        return true;
+                }
+                return false;
+            }
+        });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        saveState();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        restoreState();
+
+        setRoutines(routineCount, routines, checklistFragment);
+        setRoutines(routineCount, routines, settingFragment);
+    }
+
+    public void getRoutines(int num, ArrayList<String> routines){
+        routineCount = num;
+
+        this.routines.clear();
+        this.routines.addAll(routines);
+
+        setRoutines(routineCount, routines, checklistFragment);
+        setRoutines(routineCount, routines, settingFragment);
+    }
+
+    public void setRoutines(int num, ArrayList<String> routines, Fragment fragment){
+        if(fragment == checklistFragment){
+            checklistFragment.routineCount = num;
+            checklistFragment.routines.clear();
+            checklistFragment.routines.addAll(routines);
+        }else if(fragment == settingFragment){
+            settingFragment.routineCount = num;
+            settingFragment.routines.clear();
+            settingFragment.routines.addAll(routines);
+        }
+    }
+
+    protected void saveState(){
+        tinyDB.putInt("routineCount", routineCount);
+        tinyDB.putListString("routines", routines);
+    }
+
+    protected void restoreState(){
+        routineCount = tinyDB.getInt("routineCount");
+
+        routines.clear();
+        routines.addAll(tinyDB.getListString("routines"));
     }
 }
