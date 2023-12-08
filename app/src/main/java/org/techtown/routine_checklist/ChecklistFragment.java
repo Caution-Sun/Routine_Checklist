@@ -41,6 +41,7 @@ public class ChecklistFragment extends Fragment {
 
     int routineCount = 5;
     ArrayList<String> routines = new ArrayList<>();
+    ArrayList<Boolean> checks = new ArrayList<>();
 
     @Override
     public void onResume() {
@@ -49,15 +50,34 @@ public class ChecklistFragment extends Fragment {
         for(int i = 1; i <= 5; i++){
             setLayout(i, View.VISIBLE);
             setRoutines(i, "");
+            setCheck(i,false);
         }
 
         for(int i = 1; i <= routines.size(); i++){
             setRoutines(i, routines.get(i-1));
         }
 
+        for(int i = 1; i <= checks.size(); i++){
+            setCheck(i, checks.get(i-1));
+        }
+
         for(int i = 5; i > routineCount; i--){
             setLayout(i, View.GONE);
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        checks.clear();
+        for(int i = 1; i <= routineCount; i++){
+            saveChecks(i);
+        }
+
+        MainActivity activity = (MainActivity) getActivity();
+        activity.getChecked();
+
     }
 
     @Override
@@ -149,6 +169,61 @@ public class ChecklistFragment extends Fragment {
                 break;
             case 5:
                 routine5.setText(s);
+                break;
+        }
+    }
+
+    private void setCheck(int a, boolean c){
+        switch (a){
+            case 1:
+                if(c)
+                    checkBox1.setChecked(true);
+                else
+                    checkBox1.setChecked(false);
+                break;
+            case 2:
+                if(c)
+                    checkBox2.setChecked(true);
+                else
+                    checkBox2.setChecked(false);
+                break;
+            case 3:
+                if(c)
+                    checkBox3.setChecked(true);
+                else
+                    checkBox3.setChecked(false);
+                break;
+            case 4:
+                if(c)
+                    checkBox4.setChecked(true);
+                else
+                    checkBox4.setChecked(false);
+                break;
+            case 5:
+                if(c)
+                    checkBox5.setChecked(true);
+                else
+                    checkBox5.setChecked(false);
+                break;
+        }
+    }
+
+    private void saveChecks(int a){
+        switch (a){
+            case 1:
+                checks.add(checkBox1.isChecked());
+                break;
+            case 2:
+                checks.add(checkBox2.isChecked());
+                break;
+            case 3:
+                checks.add(checkBox3.isChecked());
+                break;
+            case 4:
+                checks.add(checkBox4.isChecked());
+                break;
+            case 5:
+                checks.add(checkBox5.isChecked());
                 break;
         }
     }

@@ -1,6 +1,7 @@
 package org.techtown.routine_checklist;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     int routineCount = 5;
     ArrayList<String> routines = new ArrayList<>();
+    ArrayList<Boolean> checks = new ArrayList<>();
 
     TinyDB tinyDB;
 
@@ -44,14 +47,14 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (item.getItemId()){
                     case R.id.tab1:
-                        setRoutines(routineCount, routines, checklistFragment);
+                        setRoutines(routineCount, routines, checklistFragment, checks);
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, checklistFragment).commit();
                         return true;
                     case R.id.tab2:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, calenderFragment).commit();
                         return true;
                     case R.id.tab3:
-                        setRoutines(routineCount, routines, settingFragment);
+                        setRoutines(routineCount, routines, settingFragment, checks);
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, settingFragment).commit();
                         return true;
                 }
@@ -64,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
+        checks.clear();
+        checks.addAll(checklistFragment.checks);
+
         saveState();
     }
 
@@ -73,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
 
         restoreState();
 
-        setRoutines(routineCount, routines, checklistFragment);
-        setRoutines(routineCount, routines, settingFragment);
+        setRoutines(routineCount, routines, checklistFragment, checks);
+        setRoutines(routineCount, routines, settingFragment, checks);
     }
 
     public void getRoutines(int num, ArrayList<String> routines){
@@ -83,15 +89,25 @@ public class MainActivity extends AppCompatActivity {
         this.routines.clear();
         this.routines.addAll(routines);
 
-        setRoutines(routineCount, routines, checklistFragment);
-        setRoutines(routineCount, routines, settingFragment);
+        this.checks.clear();
+
+        setRoutines(routineCount, routines, checklistFragment, checks);
+        setRoutines(routineCount, routines, settingFragment, checks);
     }
 
-    public void setRoutines(int num, ArrayList<String> routines, Fragment fragment){
+    public void getChecked(){
+        checks.clear();
+
+        checks.addAll(checklistFragment.checks);
+    }
+
+    public void setRoutines(int num, ArrayList<String> routines, Fragment fragment, ArrayList<Boolean> checks){
         if(fragment == checklistFragment){
             checklistFragment.routineCount = num;
             checklistFragment.routines.clear();
             checklistFragment.routines.addAll(routines);
+            checklistFragment.checks.clear();
+            checklistFragment.checks.addAll(checks);
         }else if(fragment == settingFragment){
             settingFragment.routineCount = num;
             settingFragment.routines.clear();
@@ -102,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
     protected void saveState(){
         tinyDB.putInt("routineCount", routineCount);
         tinyDB.putListString("routines", routines);
+        tinyDB.putListBoolean("checks", checks);
     }
 
     protected void restoreState(){
@@ -109,5 +126,8 @@ public class MainActivity extends AppCompatActivity {
 
         routines.clear();
         routines.addAll(tinyDB.getListString("routines"));
+
+        checks.clear();
+        checks.addAll(tinyDB.getListBoolean("checks"));
     }
 }
