@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -16,6 +17,10 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
+
+    public static RoutineDatabase mDatabase = null;
 
     ChecklistFragment checklistFragment;
     CalenderFragment calenderFragment;
@@ -31,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        openDatabase();
 
         tinyDB = new TinyDB(this);
 
@@ -129,5 +136,29 @@ public class MainActivity extends AppCompatActivity {
 
         checks.clear();
         checks.addAll(tinyDB.getListBoolean("checks"));
+    }
+
+    public void openDatabase(){
+        if(mDatabase != null){
+            mDatabase.close();
+            mDatabase = null;
+        }
+
+        mDatabase = RoutineDatabase.getInstance(this);
+        boolean isOpen = mDatabase.open();
+        if(isOpen)
+            Log.d(TAG, "Routine database is open.");
+        else
+            Log.d(TAG, "Rotine database is not open.");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if(mDatabase != null){
+            mDatabase.close();
+            mDatabase = null;
+        }
     }
 }

@@ -1,10 +1,8 @@
 package org.techtown.routine_checklist;
 
-import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -15,9 +13,13 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ChecklistFragment extends Fragment {
+
+    private static final String TAG = "ChecklistFragment";
 
     LinearLayout layout1;
     LinearLayout layout2;
@@ -36,6 +38,12 @@ public class ChecklistFragment extends Fragment {
     CheckBox checkBox3;
     CheckBox checkBox4;
     CheckBox checkBox5;
+
+    int checked1 = 0;
+    int checked2 = 0;
+    int checked3 = 0;
+    int checked4 = 0;
+    int checked5 = 0;
 
     Button saveButton;
 
@@ -106,7 +114,7 @@ public class ChecklistFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                addRoutine();
             }
         });
 
@@ -224,6 +232,91 @@ public class ChecklistFragment extends Fragment {
                 break;
             case 5:
                 checks.add(checkBox5.isChecked());
+                break;
+        }
+    }
+
+    private void addRoutine(){
+        for(int i = 1; i <= 5; i++){
+            setChecked(i);
+        }
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        String dateNow = simpleDateFormat.format(System.currentTimeMillis());
+
+        String sql = "select * from " + RoutineDatabase.TABLE_ROUTINE + " where DATE = " + dateNow;
+        RoutineDatabase database = RoutineDatabase.getInstance(getContext());
+
+        if(database != null){
+            Cursor cursor = database.rawQuery(sql);
+
+            if(cursor.getCount() != 0){
+                sql = "update " + RoutineDatabase.TABLE_ROUTINE + " set " +
+                "COUNT = '" + routineCount + "', " +
+                "ROUTINE1 = '" + routine1.getText().toString() + "', " +
+                "ROUTINE2 = '" + routine2.getText().toString() + "', " +
+                "ROUTINE3 = '" + routine3.getText().toString() + "', " +
+                "ROUTINE4 = '" + routine4.getText().toString() + "', " +
+                "ROUTINE5 = '" + routine5.getText().toString() + "', " +
+                "CHECK1 = " + checked1 + "', " +
+                "CHECK2 = " + checked2 + ", " +
+                "CHECK3 = " + checked3 + ", " +
+                "CHECK4 = " + checked4 + ", " +
+                "CHECK5 = " + checked5 + " " +
+                "where DATE = " + dateNow;
+            }else{
+                sql = "insert into " + RoutineDatabase.TABLE_ROUTINE +
+                "(DATE, COUNT, ROUTINE1, ROUTINE2, ROUTINE3, ROUTINE4, ROUTINE5, CHECK1, CHECK2, CHECK3, CHECK4, CHECK5) values(" +
+                "" + dateNow + ", " +
+                "" + routineCount + ", " +
+                "'" + routine1.getText().toString() + "', " +
+                "'" + routine2.getText().toString() + "', " +
+                "'" + routine3.getText().toString() + "', " +
+                "'" + routine4.getText().toString() + "', " +
+                "'" + routine5.getText().toString() + "', " +
+                 checked1 + ", " +
+                 checked2 + ", " +
+                 checked3 + ", " +
+                 checked4 + ", " +
+                 checked5 + ")";
+            }
+
+            database.execSQL(sql);
+        }
+    }
+
+    private void setChecked(int a){
+        switch (a){
+            case 1:
+                if(checkBox1.isChecked())
+                    checked1 = 1;
+                else
+                    checked1 = 0;
+                break;
+            case 2:
+                if(checkBox2.isChecked())
+                    checked2 = 1;
+                else
+                    checked2 = 0;
+                break;
+            case 3:
+                if(checkBox3.isChecked())
+                    checked3 = 1;
+                else
+                    checked3 = 0;
+                break;
+            case 4:
+                if(checkBox4.isChecked())
+                    checked4 = 1;
+                else
+                    checked4 = 0;
+                break;
+            case 5:
+                if(checkBox5.isChecked())
+                    checked5 = 1;
+                else
+                    checked5 = 0;
                 break;
         }
     }
