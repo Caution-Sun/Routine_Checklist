@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -259,7 +260,7 @@ public class ChecklistFragment extends Fragment {
                 "ROUTINE3 = '" + routine3.getText().toString() + "', " +
                 "ROUTINE4 = '" + routine4.getText().toString() + "', " +
                 "ROUTINE5 = '" + routine5.getText().toString() + "', " +
-                "CHECK1 = " + checked1 + "', " +
+                "CHECK1 = " + checked1 + ", " +
                 "CHECK2 = " + checked2 + ", " +
                 "CHECK3 = " + checked3 + ", " +
                 "CHECK4 = " + checked4 + ", " +
@@ -283,6 +284,8 @@ public class ChecklistFragment extends Fragment {
             }
 
             database.execSQL(sql);
+
+            Toast.makeText(getContext(), "달성 데이터 추가됨", Toast.LENGTH_SHORT).show();
         }
     }
 
