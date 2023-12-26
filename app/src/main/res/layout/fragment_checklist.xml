@@ -31,9 +31,11 @@
                 android:id="@+id/textRoutine1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:hint="루틴 1"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/checkBoxRoutine1"
@@ -56,9 +58,11 @@
                 android:id="@+id/textRoutine2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:hint="루틴 2"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/checkBoxRoutine2"
@@ -80,9 +84,11 @@
                 android:id="@+id/textRoutine3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:hint="루틴 3"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/checkBoxRoutine3"
@@ -104,9 +110,11 @@
                 android:id="@+id/textRoutine4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:hint="루틴 4"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/checkBoxRoutine4"
@@ -128,9 +136,11 @@
                 android:id="@+id/textRoutine5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:hint="루틴 5"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/checkBoxRoutine5"
