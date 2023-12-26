@@ -3,7 +3,6 @@ package org.techtown.routine_checklist;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
-import android.icu.util.Calendar;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,11 +11,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
+import android.widget.TextView;
+
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 
 public class CalenderFragment extends Fragment {
 
-    String date = "";
+    String calendarDate = "";
     int routineCount = 0;
     String Routine1 = "";
     String Routine2 = "";
@@ -29,18 +33,28 @@ public class CalenderFragment extends Fragment {
     int checked4 = 0;
     int checked5 = 0;
 
+    int dayCount = 0;
+    int allRoutine = 0;
+    int successRoutine = 0;
+    int failedRoutine = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup rootview = (ViewGroup) inflater.inflate(R.layout.fragment_calander, container, false);
 
-        CalendarView calendar = rootview.findViewById(R.id.calendarView);
-        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        TextView textStats = rootview.findViewById(R.id.textStats);
+
+        MaterialCalendarView calender = rootview.findViewById(R.id.calendarView);
+        calender.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                month += 1;
-                date = year + "-" + month + "-" + dayOfMonth;
-                String sql = "select * from " + RoutineDatabase.TABLE_ROUTINE + " where DATE = " + date;
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                int year = date.getYear();
+                int month = date.getMonth();
+                int day = date.getDay();
+                calendarDate = year + "-" + month + "-" + day;
+
+                String sql = "select * from " + RoutineDatabase.TABLE_ROUTINE + " where DATE = " + calendarDate;
 
                 RoutineDatabase database = RoutineDatabase.getInstance(getContext());
                 Cursor cursor = database.rawQuery(sql);
@@ -60,16 +74,54 @@ public class CalenderFragment extends Fragment {
                     checked4 = cursor.getInt(10);
                     checked5 = cursor.getInt(11);
 
-                    showRoutine(year, month, dayOfMonth, true);
+                    showRoutine(year, month, day, true);
                 }else
-                    showRoutine(year, month, dayOfMonth, false);
+                    showRoutine(year, month, day, false);
+            }
+        });
+        calender.setOnMonthChangedListener(new OnMonthChangedListener() {
+            @Override
+            public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
+                int year = date.getYear();
+                int month = date.getMonth();
+                calendarDate = year + "-" + month + "-" + "**";
+
+                String sql = "select * from " + RoutineDatabase.TABLE_ROUTINE + " where DATE = " + calendarDate;
+
+                dayCount = 0;
+                allRoutine = 0;
+                successRoutine = 0;
+                failedRoutine = 0;
+
+                String stats = "";
+
+                RoutineDatabase database = RoutineDatabase.getInstance(getContext());
+                Cursor cursor = database.rawQuery(sql);
+
+                if(cursor.getCount() != 0) {
+                    for (int i = 0; i < cursor.getCount(); i++) {
+                        cursor.moveToNext();
+
+                        dayCount++;
+
+                        setStats(cursor);
+                    }
+
+                    stats = year + "년 " + month + "월의 통계.\n";
+
+                }else{
+                    stats = year + "년 " + month + "월엔 데이터가 없습니다.";
+                }
+
+                textStats.setText(stats);
             }
         });
 
         return rootview;
     }
 
-    public void showRoutine(int year, int month, int dayOfMonth, boolean a){
+
+    private void showRoutine(int year, int month, int dayOfMonth, boolean a){
         String date = year + " " + month + " " + dayOfMonth;
         String content = "";
 
@@ -192,5 +244,25 @@ public class CalenderFragment extends Fragment {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    private void setStats(Cursor cursor){
+
+        int routineCount = cursor.getInt(1);
+
+        if(routineCount != 0){
+            allRoutine += routineCount;
+
+            int start = 7;
+            int end = start +  routineCount;
+
+            for(int i = start; i < end; i++){
+                int checked = cursor.getInt(i);
+                if(checked == 1)
+                    successRoutine++;
+                else
+                    failedRoutine++;
+            }
+        }
     }
 }
