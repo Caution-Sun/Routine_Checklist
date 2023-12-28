@@ -35,6 +35,7 @@
                 android:layout_weight="1"
                 android:hint="루틴 1"
                 android:textAlignment="center"
+                android:textColor="@color/textColor"
                 android:textSize="20sp" />
 
             <CheckBox
@@ -42,6 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
+                android:buttonTint="@color/colorPrimaryVariant"
                 android:checked="false" />
         </LinearLayout>
 
@@ -62,13 +64,15 @@
                 android:layout_weight="1"
                 android:hint="루틴 2"
                 android:textAlignment="center"
+                android:textColor="@color/textColor"
                 android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/checkBoxRoutine2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0" />
+                android:layout_weight="0"
+                android:buttonTint="@color/colorPrimaryVariant" />
         </LinearLayout>
 
         <LinearLayout
@@ -88,13 +92,15 @@
                 android:layout_weight="1"
                 android:hint="루틴 3"
                 android:textAlignment="center"
+                android:textColor="@color/textColor"
                 android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/checkBoxRoutine3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0" />
+                android:layout_weight="0"
+                android:buttonTint="@color/colorPrimaryVariant" />
         </LinearLayout>
 
         <LinearLayout
@@ -114,13 +120,15 @@
                 android:layout_weight="1"
                 android:hint="루틴 4"
                 android:textAlignment="center"
+                android:textColor="@color/textColor"
                 android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/checkBoxRoutine4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0" />
+                android:layout_weight="0"
+                android:buttonTint="@color/colorPrimaryVariant" />
         </LinearLayout>
 
         <LinearLayout
@@ -140,13 +148,15 @@
                 android:layout_weight="1"
                 android:hint="루틴 5"
                 android:textAlignment="center"
+                android:textColor="@color/textColor"
                 android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/checkBoxRoutine5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0" />
+                android:layout_weight="0"
+                android:buttonTint="@color/colorPrimaryVariant" />
         </LinearLayout>
 
         <Button
@@ -155,6 +165,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:text="Save" />
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Save"
+            android:textColor="@color/textColor"
+            android:textStyle="bold" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

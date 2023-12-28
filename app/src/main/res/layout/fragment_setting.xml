@@ -35,6 +35,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint=" 루틴 입력 1"
+                    android:textColor="@color/textColor"
                     android:inputType="textPersonName" />
 
                 <Button
@@ -62,6 +63,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="루틴 입력 2"
+                    android:textColor="@color/textColor"
                     android:inputType="textPersonName" />
 
                 <Button
@@ -89,6 +91,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="루틴 입력 3"
+                    android:textColor="@color/textColor"
                     android:inputType="textPersonName" />
 
                 <Button
@@ -116,6 +119,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="루틴 입력 4"
+                    android:textColor="@color/textColor"
                     android:inputType="textPersonName" />
 
                 <Button
@@ -143,6 +147,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="루틴 입력 5"
+                    android:textColor="@color/textColor"
                     android:inputType="textPersonName" />
 
                 <Button
@@ -168,7 +173,10 @@
                 android:id="@+id/buttonSetting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="설정 적용" />
+                android:backgroundTint="#A5E8F1"
+                android:text="설정 적용"
+                android:textColor="@color/textColor"
+                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 

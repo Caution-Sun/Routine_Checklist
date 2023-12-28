@@ -97,7 +97,6 @@ public class SettingFragment extends Fragment {
                         for(int i = routineCount; i > 1; i--){
                             tmp = deleteRoutine(i, tmp);
                         }
-
                         break;
                     case 3:
                         layout3.setVisibility(View.GONE);
@@ -106,7 +105,6 @@ public class SettingFragment extends Fragment {
                         for(int i = routineCount; i > 1; i--){
                             tmp = deleteRoutine(i, tmp);
                         }
-
                         break;
                     case 4:
                         layout4.setVisibility(View.GONE);
@@ -115,7 +113,6 @@ public class SettingFragment extends Fragment {
                         for(int i = routineCount; i > 1; i--){
                             tmp = deleteRoutine(i, tmp);
                         }
-
                         break;
                     case 5:
                         layout5.setVisibility(View.GONE);
@@ -124,7 +121,6 @@ public class SettingFragment extends Fragment {
                         for(int i = routineCount; i > 1; i--){
                             tmp = deleteRoutine(i, tmp);
                         }
-
                         break;
                 }
 
@@ -148,7 +144,6 @@ public class SettingFragment extends Fragment {
                         for(int i = routineCount; i > 2; i--){
                             tmp = deleteRoutine(i, tmp);
                         }
-
                         break;
                     case 4:
                         layout4.setVisibility(View.GONE);
@@ -157,7 +152,6 @@ public class SettingFragment extends Fragment {
                         for(int i = routineCount; i > 2; i--){
                             tmp = deleteRoutine(i, tmp);
                         }
-
                         break;
                     case 5:
                         layout5.setVisibility(View.GONE);
@@ -166,7 +160,6 @@ public class SettingFragment extends Fragment {
                         for(int i = routineCount; i > 2; i--){
                             tmp = deleteRoutine(i, tmp);
                         }
-
                         break;
                 }
 
@@ -190,7 +183,6 @@ public class SettingFragment extends Fragment {
                         for(int i = routineCount; i > 3; i--){
                             tmp = deleteRoutine(i, tmp);
                         }
-
                         break;
                     case 5:
                         layout5.setVisibility(View.GONE);
@@ -199,7 +191,6 @@ public class SettingFragment extends Fragment {
                         for(int i = routineCount; i > 3; i--){
                             tmp = deleteRoutine(i, tmp);
                         }
-
                         break;
                 }
 
@@ -223,7 +214,6 @@ public class SettingFragment extends Fragment {
                         for(int i = routineCount; i > 4; i--){
                             tmp = deleteRoutine(i, tmp);
                         }
-
                         break;
                 }
 
