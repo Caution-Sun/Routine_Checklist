@@ -246,7 +246,8 @@ public class ChecklistFragment extends Fragment {
         Date date = new Date();
         String dateNow = simpleDateFormat.format(System.currentTimeMillis());
 
-        String sql = "select * from " + RoutineDatabase.TABLE_ROUTINE + " where DATE = " + dateNow;
+        String sql = "select * from " + RoutineDatabase.TABLE_ROUTINE + " where DATE = '" + dateNow + "'";
+
         RoutineDatabase database = RoutineDatabase.getInstance(getContext());
 
         if(database != null){
@@ -265,11 +266,11 @@ public class ChecklistFragment extends Fragment {
                 "CHECK3 = " + checked3 + ", " +
                 "CHECK4 = " + checked4 + ", " +
                 "CHECK5 = " + checked5 + " " +
-                "where DATE = " + dateNow;
+                "where DATE = '" + dateNow + "'";
             }else{
                 sql = "insert into " + RoutineDatabase.TABLE_ROUTINE +
                 "(DATE, COUNT, ROUTINE1, ROUTINE2, ROUTINE3, ROUTINE4, ROUTINE5, CHECK1, CHECK2, CHECK3, CHECK4, CHECK5) values(" +
-                "" + dateNow + ", " +
+                "'" + dateNow + "', " +
                 "" + routineCount + ", " +
                 "'" + routine1.getText().toString() + "', " +
                 "'" + routine2.getText().toString() + "', " +

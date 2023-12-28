@@ -13,14 +13,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:mcv_selectionColor="#8888FF"
+        app:mcv_selectionColor="#63D4F7"
         app:mcv_showOtherDates="defaults" />
 
     <TextView
         android:id="@+id/textStats"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Stats"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

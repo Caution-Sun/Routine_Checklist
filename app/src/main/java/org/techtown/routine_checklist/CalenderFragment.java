@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -20,7 +21,6 @@ import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 
 public class CalenderFragment extends Fragment {
 
-    String calendarDate = "";
     int routineCount = 0;
     String Routine1 = "";
     String Routine2 = "";
@@ -38,23 +38,39 @@ public class CalenderFragment extends Fragment {
     int successRoutine = 0;
     int failedRoutine = 0;
 
+    TextView textStats;
+    MaterialCalendarView calendar;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup rootview = (ViewGroup) inflater.inflate(R.layout.fragment_calander, container, false);
 
-        TextView textStats = rootview.findViewById(R.id.textStats);
+        textStats = rootview.findViewById(R.id.textStats);
 
-        MaterialCalendarView calender = rootview.findViewById(R.id.calendarView);
-        calender.setOnDateChangedListener(new OnDateSelectedListener() {
+        calendar = rootview.findViewById(R.id.calendarView);
+        calendar.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 int year = date.getYear();
                 int month = date.getMonth();
                 int day = date.getDay();
-                calendarDate = year + "-" + month + "-" + day;
 
-                String sql = "select * from " + RoutineDatabase.TABLE_ROUTINE + " where DATE = " + calendarDate;
+                String monthString = "";
+                String dayString = "";
+
+                if(month < 10)
+                    monthString = "0" + month;
+                else
+                    monthString += month;
+                if(day < 10)
+                    dayString = "0" + day;
+                else
+                    dayString += day;
+
+                String calendarDate = year + "-" + monthString + "-" + dayString;
+
+                String sql = "select * from " + RoutineDatabase.TABLE_ROUTINE + " where DATE = '" + calendarDate + "'";
 
                 RoutineDatabase database = RoutineDatabase.getInstance(getContext());
                 Cursor cursor = database.rawQuery(sql);
@@ -79,14 +95,35 @@ public class CalenderFragment extends Fragment {
                     showRoutine(year, month, day, false);
             }
         });
-        calender.setOnMonthChangedListener(new OnMonthChangedListener() {
+        calendar.setOnMonthChangedListener(new OnMonthChangedListener() {
             @Override
             public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
                 int year = date.getYear();
                 int month = date.getMonth();
-                calendarDate = year + "-" + month + "-" + "**";
+                String monthString = "";
 
-                String sql = "select * from " + RoutineDatabase.TABLE_ROUTINE + " where DATE = " + calendarDate;
+                if(month < 10)
+                    monthString = "0" + month;
+                else
+                    monthString += month;
+
+                String calendarDateStart = year + "-" + monthString + "-" + "01";
+                String calendarDateEnd = year + "-" + monthString + "-";
+
+
+                switch (month){
+                    case 1 : case 3 : case 5 : case 7 : case 8 : case 10 : case 12 :
+                        calendarDateEnd += "31";
+                        break;
+                    case 2 :
+                        calendarDateEnd += "28";
+                        break;
+                    case 4 : case 6 : case 9 : case 11:
+                        calendarDateEnd += "30";
+                        break;
+                }
+
+                String sql = "select * from " + RoutineDatabase.TABLE_ROUTINE + " where DATE between '" + calendarDateStart  + "' and '" + calendarDateEnd + "'";
 
                 dayCount = 0;
                 allRoutine = 0;
@@ -107,7 +144,10 @@ public class CalenderFragment extends Fragment {
                         setStats(cursor);
                     }
 
-                    stats = year + "년 " + month + "월의 통계.\n";
+                    double successRate = (double)successRoutine / (double)allRoutine * 100.0;
+                    String successRateString = String.format("%.2f", successRate);
+
+                    stats = year + "년 " + month + "월의 통계\n저장 일 수 : " + dayCount + "\n저장 루틴 수 : " + allRoutine + "\n루틴 달성률 : " + successRateString + "%";
 
                 }else{
                     stats = year + "년 " + month + "월엔 데이터가 없습니다.";
@@ -118,6 +158,11 @@ public class CalenderFragment extends Fragment {
         });
 
         return rootview;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
 
