@@ -269,15 +269,19 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                routines.clear();
-                for(int i = 1; i <= routineCount; i++){
-                    setRoutines(i);
+                if(checkNull(routineCount)) {
+                    routines.clear();
+                    for(int i = 1; i <= routineCount; i++){
+                        setRoutines(i);
+                    }
+
+                    MainActivity activity = (MainActivity) getActivity();
+                    activity.getRoutines(routineCount, routines);
+
+                    Toast.makeText(rootView.getContext(),"설정 저장됨", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(rootView.getContext(),"루틴 내용을 입력해주세요", Toast.LENGTH_SHORT).show();
                 }
-
-                MainActivity activity = (MainActivity) getActivity();
-                activity.getRoutines(routineCount, routines);
-
-                Toast.makeText(rootView.getContext(),"설정 저장됨", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -399,6 +403,43 @@ public class SettingFragment extends Fragment {
                 editText5.setText(s);
                 break;
         }
+    }
+
+    private boolean checkNull(int routineCount){
+        switch (routineCount){
+            case 1:
+                if(editText1.getText().toString() == null || editText1.getText().toString().isEmpty())
+                    return false;
+                break;
+            case 2:
+                if(editText1.getText().toString() == null || editText1.getText().toString().isEmpty()
+                || editText2.getText().toString() == null || editText2.getText().toString().isEmpty())
+                    return false;
+                break;
+            case 3:
+                if(editText1.getText().toString() == null || editText1.getText().toString().isEmpty()
+                || editText2.getText().toString() == null || editText2.getText().toString().isEmpty()
+                || editText3.getText().toString() == null || editText3.getText().toString().isEmpty())
+                    return false;
+                break;
+            case 4:
+                if(editText1.getText().toString() == null || editText1.getText().toString().isEmpty()
+                || editText2.getText().toString() == null || editText2.getText().toString().isEmpty()
+                || editText3.getText().toString() == null || editText3.getText().toString().isEmpty()
+                || editText4.getText().toString() == null || editText4.getText().toString().isEmpty())
+                    return false;
+                break;
+            case 5:
+                if(editText1.getText().toString() == null || editText1.getText().toString().isEmpty()
+                || editText2.getText().toString() == null || editText2.getText().toString().isEmpty()
+                || editText3.getText().toString() == null || editText3.getText().toString().isEmpty()
+                || editText4.getText().toString() == null || editText4.getText().toString().isEmpty()
+                || editText5.getText().toString() == null || editText5.getText().toString().isEmpty())
+                    return false;
+                break;
+        }
+
+        return true;
     }
 
 }
