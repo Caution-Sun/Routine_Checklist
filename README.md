@@ -2,6 +2,8 @@
 
 하루 루틴 체크 앱
 
+<a href = 'https://velog.io/@e414/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A3%A8%ED%8B%B4-%EC%B2%B4%ED%81%AC%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EC%95%84%EC%9D%B4%EB%94%94%EC%96%B4-%EA%B5%AC%EC%83%81'>velog 개발 일지</a>
+
 ---
 
 
