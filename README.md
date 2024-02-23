@@ -6,6 +6,14 @@
 
 ---
 
+### Update
+
+2024 / 02 / 24
+- 루틴 체크 화면에서 모든 루틴을 체크하고 저장했을 때, 저장 후 모든 체크가 자동으로 해제되도록 만듬.
+<img src = "https://github.com/Caution-Sun/Routine_Checklist/assets/60997821/c30c20d2-26e9-49e0-bf2d-544f8117f3ed" width = "30%" height = "30%">
+
+---
+
 
 ## 루틴 체크 화면
 
