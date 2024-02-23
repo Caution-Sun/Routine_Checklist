@@ -287,6 +287,8 @@ public class ChecklistFragment extends Fragment {
             database.execSQL(sql);
 
             Toast.makeText(getContext(), "달성 데이터 추가됨", Toast.LENGTH_SHORT).show();
+
+            checkOut();
         }
     }
 
@@ -322,6 +324,16 @@ public class ChecklistFragment extends Fragment {
                 else
                     checked5 = 0;
                 break;
+        }
+    }
+
+    private void checkOut(){
+        int all = checked1 + checked2 + checked3 + checked4 + checked5;
+
+        if(all == routineCount){
+            for(int i = 1; i <= 5; i++){
+                setCheck(i, false);
+            }
         }
     }
 }
